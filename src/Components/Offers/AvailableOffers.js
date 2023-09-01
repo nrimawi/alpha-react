@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import useHttp from "../../hooks/use-http";
 import Card from "../UI/Card";
 import OfferItem from "./OfferItem/OfferItem";
 import classes from "./AvailableOffers.module.css";
@@ -7,21 +7,10 @@ import Loader from "../UI/Loader";
 
 const AvailableOffers = () => {
   const [offers, setOffers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState();
+  const { isLoading, error, sendRequest: fetchOffers } = useHttp();
 
   useEffect(() => {
-    const fetchOffers = async () => {
-      const response = await fetch(
-        "https://react-training-394f6-default-rtdb.firebaseio.com/meals.json"
-      );
-
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-
-      const responseData = await response.json();
-
+    const transformOffers = (responseData) => {
       const loadedOffers = [];
 
       for (const key in responseData) {
@@ -32,16 +21,16 @@ const AvailableOffers = () => {
           price: responseData[key].price,
         });
       }
-
       setOffers(loadedOffers);
-      setIsLoading(false);
     };
 
-    fetchOffers().catch((error) => {
-      setIsLoading(false);
-      setHttpError(error.message);
-    });
-  }, []);
+    fetchOffers(
+      {
+        url: "https://react-training-394f6-default-rtdb.firebaseio.com/meals.json",
+      },
+      transformOffers
+    );
+  }, [fetchOffers]);
 
   if (isLoading) {
     return (
@@ -51,10 +40,10 @@ const AvailableOffers = () => {
     );
   }
 
-  if (httpError) {
+  if (error) {
     return (
       <section className={classes.OffersError}>
-        <p>{httpError}</p>
+        <p>{error}</p>
       </section>
     );
   }
