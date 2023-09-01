@@ -1,60 +1,81 @@
-import styles from "./AvailableMeals.module.css";
+import { useEffect, useState } from "react";
+
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
-import useHttp from "../../hooks/use-http";
-import { useEffect, useState } from "react";
+import classes from "./AvailableMeals.module.css";
+import Loader from "../UI/Loader";
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
-  const { isLoading, error, sendRequest: fetchMeals } = useHttp();
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState();
 
   useEffect(() => {
-    const transformMealsData = (MealsObj) => {
+    const fetchMeals = async () => {
+      const response = await fetch(
+        "https://react-training-394f6-default-rtdb.firebaseio.com/meals.json"
+      );
+
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const responseData = await response.json();
+
       const loadedMeals = [];
 
-      for (const key in MealsObj) {
+      for (const key in responseData) {
         loadedMeals.push({
-          id: MealsObj[key].id,
-          name: MealsObj[key].name,
-          description: MealsObj[key].description,
-          price: MealsObj[key].price,
+          id: key,
+          name: responseData[key].name,
+          description: responseData[key].description,
+          price: responseData[key].price,
         });
       }
 
       setMeals(loadedMeals);
+      setIsLoading(false);
     };
 
-    fetchMeals(
-      {
-        url: "https://react-training-394f6-default-rtdb.firebaseio.com/meals.json",
-      },
-      transformMealsData
-    );
-  }, [fetchMeals]);
+    fetchMeals().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
+  }, []);
 
-  if (error) {
-    return <p className={styles.error}>{error}</p>;
-  }
   if (isLoading) {
-    return <p className={styles.loading}>Loading..</p>;
+    return (
+      <section className={classes.MealsLoading}>
+        <Loader> </Loader>
+      </section>
+    );
   }
+
+  if (httpError) {
+    return (
+      <section className={classes.MealsError}>
+        <p>{httpError}</p>
+      </section>
+    );
+  }
+
+  const mealsList = meals.map((meal) => (
+    <MealItem
+      key={meal.id}
+      id={meal.id}
+      name={meal.name}
+      description={meal.description}
+      price={meal.price}
+    />
+  ));
 
   return (
-    <section className={styles.meals}>
+    <section className={classes.meals}>
       <Card>
-        <ul>
-          {meals.map((meal) => (
-            <MealItem
-              key={meal.id}
-              id={meal.id}
-              price={meal.price}
-              description={meal.description}
-              name={meal.name}
-            ></MealItem>
-          ))}
-        </ul>
+        <ul>{mealsList}</ul>
       </Card>
     </section>
   );
 };
+
 export default AvailableMeals;

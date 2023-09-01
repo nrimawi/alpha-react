@@ -1,33 +1,35 @@
 import { useContext } from "react";
-import CartContext from "../../../store/cart-context";
-import styles from "./MealItem.module.css";
+
 import MealItemForm from "./MealItemForm";
+import classes from "./MealItem.module.css";
+import CartContext from "../../../store/cart-context";
+
 const MealItem = (props) => {
   const cartCtx = useContext(CartContext);
-  const price = `$${props.price?.toFixed(2)}`;
 
-  const onAddToCartHandler = (amount) => {
-    const itemToAdd = {
+  const price = `$${props.price.toFixed(2)}`;
+
+  const addToCartHandler = (amount) => {
+    cartCtx.addItem({
       id: props.id,
       name: props.name,
-      price: props.price,
       amount: amount,
-    };
-    cartCtx.addItem(itemToAdd);
+      price: props.price,
+    });
   };
+
   return (
-    <div className={styles.meal}>
+    <li className={classes.meal}>
       <div>
-        <div>
-          <h3>{props.name}</h3>
-        </div>
-        <div className={styles.description}>{props.description}</div>
-        <div className={styles.price}>{price}</div>
+        <h3>{props.name}</h3>
+        <div className={classes.description}>{props.description}</div>
+        <div className={classes.price}>{price}</div>
       </div>
       <div>
-        <MealItemForm onAddToCart={onAddToCartHandler} id={props.id} />
+        <MealItemForm onAddToCart={addToCartHandler} />
       </div>
-    </div>
+    </li>
   );
 };
+
 export default MealItem;

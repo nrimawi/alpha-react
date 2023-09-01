@@ -1,5 +1,6 @@
 .form {
-  margin: 1.5rem 0;
+  margin: 1rem 0;
+  height: 19rem;
   overflow: auto;
 }
 
@@ -22,7 +23,6 @@
 }
 
 .actions {
-  margin-top: 20px;
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
@@ -35,7 +35,7 @@
   background-color: transparent;
   border: none;
   border-radius: 25px;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 2rem; 
 }
 
 .actions button:hover,
@@ -61,17 +61,4 @@
 .invalid input {
   border-color: #aa0b20;
   background-color: #ffeff1;
-}
-.invalid input {
-  border: 1px solid #b40e0e;
-  background-color: #fddddd;
-}
-
-.invalid input:focus {
-  border-color: #ff8800;
-  background-color: #fbe8d2;
-}
-
-.error-text {
-  color: #b40e0e;
 }

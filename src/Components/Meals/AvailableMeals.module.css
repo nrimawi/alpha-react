@@ -5,23 +5,26 @@
   animation: meals-appear 1s ease-out forwards;
 }
 
+.MealsLoading {
+  text-align: center;
+  color: white;
+}
+
+.MealsError {
+  text-align: center;
+  color: red;
+}
+
 .meals ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.error,
-.loading {
-  margin-top: 40px;
-  color: white;
-  text-align: center;
-}
-
 @keyframes meals-appear {
   from {
     opacity: 0;
-    transform: translateY(5rem);
+    transform: translateY(3rem);
   }
 
   to {
