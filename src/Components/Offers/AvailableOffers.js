@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 
 import Card from "../UI/Card";
-import MealItem from "./MealItem/MealItem";
-import classes from "./AvailableMeals.module.css";
+import OfferItem from "./OfferItem/OfferItem";
+import classes from "./AvailableOffers.module.css";
 import Loader from "../UI/Loader";
 
-const AvailableMeals = () => {
-  const [meals, setMeals] = useState([]);
+const AvailableOffers = () => {
+  const [offers, setOffers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
 
   useEffect(() => {
-    const fetchMeals = async () => {
+    const fetchOffers = async () => {
       const response = await fetch(
         "https://react-training-394f6-default-rtdb.firebaseio.com/meals.json"
       );
@@ -22,10 +22,10 @@ const AvailableMeals = () => {
 
       const responseData = await response.json();
 
-      const loadedMeals = [];
+      const loadedOffers = [];
 
       for (const key in responseData) {
-        loadedMeals.push({
+        loadedOffers.push({
           id: key,
           name: responseData[key].name,
           description: responseData[key].description,
@@ -33,11 +33,11 @@ const AvailableMeals = () => {
         });
       }
 
-      setMeals(loadedMeals);
+      setOffers(loadedOffers);
       setIsLoading(false);
     };
 
-    fetchMeals().catch((error) => {
+    fetchOffers().catch((error) => {
       setIsLoading(false);
       setHttpError(error.message);
     });
@@ -45,7 +45,7 @@ const AvailableMeals = () => {
 
   if (isLoading) {
     return (
-      <section className={classes.MealsLoading}>
+      <section className={classes.OffersLoading}>
         <Loader> </Loader>
       </section>
     );
@@ -53,14 +53,14 @@ const AvailableMeals = () => {
 
   if (httpError) {
     return (
-      <section className={classes.MealsError}>
+      <section className={classes.OffersError}>
         <p>{httpError}</p>
       </section>
     );
   }
 
-  const mealsList = meals.map((meal) => (
-    <MealItem
+  const offersList = offers.map((meal) => (
+    <OfferItem
       key={meal.id}
       id={meal.id}
       name={meal.name}
@@ -70,12 +70,12 @@ const AvailableMeals = () => {
   ));
 
   return (
-    <section className={classes.meals}>
+    <section className={classes.offers}>
       <Card>
-        <ul>{mealsList}</ul>
+        <ul>{offersList}</ul>
       </Card>
     </section>
   );
 };
 
-export default AvailableMeals;
+export default AvailableOffers;

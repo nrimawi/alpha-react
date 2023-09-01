@@ -1,27 +1,27 @@
-.meals {
+.offers {
   max-width: 60rem;
   width: 90%;
   margin: 2rem auto;
-  animation: meals-appear 1s ease-out forwards;
+  animation: offers-appear 1s ease-out forwards;
 }
 
-.MealsLoading {
+.OffersLoading {
   text-align: center;
   color: white;
 }
 
-.MealsError {
+.OffersError {
   text-align: center;
   color: red;
 }
 
-.meals ul {
+.offers ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-@keyframes meals-appear {
+@keyframes offers-appear {
   from {
     opacity: 0;
     transform: translateY(3rem);

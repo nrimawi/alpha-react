@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
-import Input from '../../UI/Input';
-import classes from './MealItemForm.module.css';
+import Input from "../../UI/Input";
+import classes from "./OfferItemForm.module.css";
 
-const MealItemForm = (props) => {
+const OfferItemForm = (props) => {
   const [amountIsValid, setAmountIsValid] = useState(true);
   const amountInputRef = useRef();
 
@@ -29,14 +29,14 @@ const MealItemForm = (props) => {
     <form className={classes.form} onSubmit={submitHandler}>
       <Input
         ref={amountInputRef}
-        label='Amount'
+        label="Amount"
         input={{
-          id: 'amount',
-          type: 'number',
-          min: '1',
-          max: '5',
-          step: '1',
-          defaultValue: '1',
+          id: "amount",
+          type: "number",
+          min: "1",
+          max: "5",
+          step: "1",
+          defaultValue: "1",
         }}
       />
       <button>+ Add</button>
@@ -45,4 +45,4 @@ const MealItemForm = (props) => {
   );
 };
 
-export default MealItemForm;
+export default OfferItemForm;
