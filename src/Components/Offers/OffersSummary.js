@@ -3,14 +3,14 @@ import classes from "./OffersSummary.module.css";
 const OffersSummary = () => {
   return (
     <section className={classes.summary}>
-      <h2>Delicious Food, Delivered To You</h2>
+      <h2>
+        Welcome to Alpha Cleaning, where cleanliness is our passion and your
+        satisfaction is our priority.
+      </h2>
       <p>
-        Choose your favorite meal from our broad selection of available meals
-        and enjoy a delicious lunch or dinner at home.
-      </p>
-      <p>
-        All our meals are cooked with high-quality ingredients, just-in-time and
-        of course by experienced chefs!
+        As a leading cleaning services company, we specialize in transforming
+        spaces into immaculate havens. With our dedicated team and top-notch
+        cleaning solutions, we deliver excellence, one clean at a time.
       </p>
     </section>
   );
