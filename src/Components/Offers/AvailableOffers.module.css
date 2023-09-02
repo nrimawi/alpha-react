@@ -8,11 +8,13 @@
 .OffersLoading {
   text-align: center;
   color: white;
+  margin: 10rem auto;
 }
 
 .OffersError {
   text-align: center;
   color: red;
+  margin: 10rem auto;
 }
 
 .offers ul {

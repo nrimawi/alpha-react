@@ -21,3 +21,17 @@ p {
   font-size: 1.2rem;
   margin-top: 0;
 }
+
+.languageButton {
+  margin-bottom: 1rem;
+  font: inherit;
+  font-weight: 600;
+  background-color: #00aed1;
+  color: white;
+  border: 1px solid #00aed1; /* Sets a 2-pixel solid red border */
+  cursor: pointer;
+  padding: 0.2rem 1rem;
+}
+.languageButton:hover {
+  background-color: rgb(1, 147, 177);
+}
