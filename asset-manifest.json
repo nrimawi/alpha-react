@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/alpha-react/static/css/main.52d127dd.css",
+    "main.js": "/alpha-react/static/js/main.d9d2031c.js",
+    "static/media/gradientPhoto.png": "/alpha-react/static/media/gradientPhoto.96f7319a02093609a49f.png",
+    "index.html": "/alpha-react/index.html",
+    "main.52d127dd.css.map": "/alpha-react/static/css/main.52d127dd.css.map",
+    "main.d9d2031c.js.map": "/alpha-react/static/js/main.d9d2031c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.52d127dd.css",
+    "static/js/main.d9d2031c.js"
+  ]
+}
