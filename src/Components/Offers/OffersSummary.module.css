@@ -3,7 +3,7 @@
   max-width: 40rem;
   width: 95%;
   margin: auto;
-  margin-top: -25rem;
+  margin-top: -70vh;
   position: relative;
   background-color: #90e1efd5;
   color: black;
@@ -35,4 +35,12 @@ p {
 }
 .languageButton:hover {
   background-color: rgb(1, 147, 177);
+}
+@media (max-width: 768px) {
+  .summary h2 {
+    font-size: 1.34rem;
+  }
+  p {
+    font-size: 1rem;
+  }
 }

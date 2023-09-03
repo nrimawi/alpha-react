@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 
 import HeaderCartButton from "./HeaderCartButton";
-import homePagePhoto from "../../../assets/HomePageIcon.png";
+import homePagePhoto from "../../../assets/gradientPhoto.png";
 import classes from "./Header.module.css";
 import { useTranslation } from "react-i18next";
 

@@ -4,10 +4,12 @@ import classes from "./AvailableOffers.module.css";
 import Loader from "../UI/Loader";
 import i18next from "i18next";
 import OfferItem from "../Offers/OfferItem/OfferItem";
+import { useTranslation } from "react-i18next";
 
 const AvailableOffers = () => {
   const [offers, setOffers] = useState([]);
   const { isLoading, error, sendRequest: fetchOffers } = useHttp();
+  const [t] = useTranslation();
 
   useEffect(() => {
     const transformOffers = (responseData) => {
@@ -64,9 +66,7 @@ const AvailableOffers = () => {
 
   return (
     <section>
-      <h1 className={classes.sectionTitle}>
-        Add the service you need to the cart and order them now !
-      </h1>
+      <h1 className={classes.sectionTitle}>{t("offers.title")}</h1>
       <div className={classes.offers}>{offersList}</div>
     </section>
   );

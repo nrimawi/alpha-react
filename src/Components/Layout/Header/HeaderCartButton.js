@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import CartIcon from "../../Cart/CartIcon";
 import classes from "./HeaderCartButton.module.css";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 const HeaderCartButton = (props) => {
+  const [t] = useTranslation();
   const CartItems = useSelector((state) => state.cart.items);
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
 
@@ -33,7 +35,8 @@ const HeaderCartButton = (props) => {
       <span className={classes.icon}>
         <CartIcon />
       </span>
-      <span className={classes.title}>Your Cart</span>
+
+      <span className={classes.title}>{t("cart.yourCart")}</span>
       <span className={classes.badge}>{numberOfCartItems}</span>
     </button>
   );
