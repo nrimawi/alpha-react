@@ -7,10 +7,11 @@ import Checkout from "./Checkout";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart";
 import useHttp from "../../hooks/use-http";
+import { useTranslation } from "react-i18next";
 
 const Cart = (props) => {
   const { isLoading, error, sendRequest: PostOrder } = useHttp();
-
+  const [t] = useTranslation();
   const dispatch = useDispatch();
   const storedCartItem = useSelector((state) => state.cart.items);
 
@@ -67,7 +68,8 @@ const Cart = (props) => {
 
   const cartModalContent = (
     <React.Fragment>
-      {cartItems}
+      {hasItems && cartItems}
+      {!hasItems && <p className={classes.empty}>{t("cart.empty")} </p>}
 
       {isCheckout && (
         <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />

@@ -23,8 +23,13 @@ const AvailableOffers = () => {
           description_en: responseData[key].description_en,
           description_ar: responseData[key].description_ar,
           imageURL: responseData[key].imageURL,
+          priority: responseData[key].priority,
         });
       }
+
+      debugger;
+      loadedOffers.sort((a, b) => a.priority - b.priority);
+
       setOffers(loadedOffers);
     };
 

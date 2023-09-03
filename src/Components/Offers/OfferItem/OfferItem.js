@@ -8,11 +8,12 @@ import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../../store/cart";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 export default function OfferItem(props) {
   const [addedToCart, setAddedToCart] = useState(false);
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
-
+  const [t] = useTranslation();
   const addToCartHandler = () => {
     dispatch(
       cartActions.addItemToCart({
@@ -48,9 +49,11 @@ export default function OfferItem(props) {
   const buttonStyle = {
     width: "100%",
     height: "100%",
+    fontFamily: "inherit",
+    fontWeight: "bolder",
   };
   return (
-    <Card sx={{ width: 350, height: 400 }}>
+    <Card sx={{ width: 350, height: 400, margin: 1 }}>
       <CardMedia
         component="img"
         alt="green iguana"
@@ -58,10 +61,20 @@ export default function OfferItem(props) {
         image={props.imageURL}
       />
       <CardContent sx={{ minHeight: 210 }}>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          fontFamily={"inherit"}
+          gutterBottom
+          variant="h5"
+          component="div"
+        >
           {props.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          fontFamily={"inherit"}
+          fontSize={"13.5px"}
+          variant="body2"
+          color="text.secondary"
+        >
           {props.description}
         </Typography>
       </CardContent>
@@ -73,7 +86,7 @@ export default function OfferItem(props) {
             onClick={addToCartHandler}
             size="large"
           >
-            Add To Cart
+            {t("offers.addToCart")}
           </Button>
         )}
 
@@ -85,7 +98,7 @@ export default function OfferItem(props) {
             size="large"
             color="error"
           >
-            Remove From Cart
+            {t("offers.removeFromCart")}
           </Button>
         )}
       </CardActions>
