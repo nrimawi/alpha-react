@@ -7,9 +7,7 @@ const HeaderCartButton = (props) => {
   const CartItems = useSelector((state) => state.cart.items);
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
 
-  const numberOfCartItems = CartItems.reduce((curNumber, item) => {
-    return curNumber + item.amount;
-  }, 0);
+  const numberOfCartItems = CartItems.length;
 
   const btnClasses = `${classes.button} ${
     btnIsHighlighted ? classes.bump : ""
@@ -35,7 +33,7 @@ const HeaderCartButton = (props) => {
       <span className={classes.icon}>
         <CartIcon />
       </span>
-      <span>Your Cart</span>
+      <span className={classes.title}>Your Cart</span>
       <span className={classes.badge}>{numberOfCartItems}</span>
     </button>
   );

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import useHttp from "../../hooks/use-http";
-import Card from "../UI/Card";
-import OfferItem from "./OfferItem/OfferItem";
 import classes from "./AvailableOffers.module.css";
 import Loader from "../UI/Loader";
+import i18next from "i18next";
+import OfferItem from "../Offers/OfferItem/OfferItem";
 
 const AvailableOffers = () => {
   const [offers, setOffers] = useState([]);
@@ -16,9 +16,11 @@ const AvailableOffers = () => {
       for (const key in responseData) {
         loadedOffers.push({
           id: key,
-          name: responseData[key].name,
-          description: responseData[key].description,
-          price: responseData[key].price,
+          title_ar: responseData[key].title_ar,
+          title_en: responseData[key].title_en,
+          description_en: responseData[key].description_en,
+          description_ar: responseData[key].description_ar,
+          imageURL: responseData[key].imageURL,
         });
       }
       setOffers(loadedOffers);
@@ -26,7 +28,7 @@ const AvailableOffers = () => {
 
     fetchOffers(
       {
-        url: "https://react-training-394f6-default-rtdb.firebaseio.com/meals.json",
+        url: "https://react-training-394f6-default-rtdb.firebaseio.com/Offers.json",
       },
       transformOffers
     );
@@ -48,21 +50,24 @@ const AvailableOffers = () => {
     );
   }
 
-  const offersList = offers.map((meal) => (
+  const offersList = offers.map((offer) => (
     <OfferItem
-      key={meal.id}
-      id={meal.id}
-      name={meal.name}
-      description={meal.description}
-      price={meal.price}
+      key={offer.id}
+      id={offer.id}
+      title={i18next.language === "ar" ? offer.title_ar : offer.title_en}
+      description={
+        i18next.language === "ar" ? offer.description_ar : offer.description_en
+      }
+      imageURL={offer.imageURL}
     />
   ));
 
   return (
-    <section className={classes.offers}>
-      <Card>
-        <ul>{offersList}</ul>
-      </Card>
+    <section>
+      <h1 className={classes.sectionTitle}>
+        Add the service you need to the cart and order them now !
+      </h1>
+      <div className={classes.offers}>{offersList}</div>
     </section>
   );
 };
