@@ -5,6 +5,8 @@ import Header from "./Components/Layout/Header/Header.js";
 import Offers from "./Components/Offers/Offers";
 import { useTranslation } from "react-i18next";
 import Home from "./Components/Layout/Header/Home/Home";
+import ComunicationLinks from "./Components/UI/CommunicationsLinks";
+
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
   const { i18n } = useTranslation();
@@ -30,7 +32,9 @@ function App() {
     <Fragment>
       <html dir={htmlDir}>
         {cartIsShown && <Cart onClose={hideCartHandler} />}
-        <Home></Home>
+
+        <Home />
+        <ComunicationLinks></ComunicationLinks>
         <Header onShowCart={showCartHandler} />
         <main>
           <Offers />

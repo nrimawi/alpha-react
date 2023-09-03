@@ -1,6 +1,6 @@
 .form {
   margin: 1rem 0;
-  height: 19rem;
+  min-height: 20rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -24,12 +24,14 @@
   border-radius: 4px;
   width: 20rem;
   max-width: 100%;
+  padding: 7px;
 }
 
 .actions {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  margin-top: 2rem;
 }
 
 .actions button {

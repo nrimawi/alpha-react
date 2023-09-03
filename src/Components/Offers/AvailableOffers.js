@@ -41,10 +41,10 @@ const AvailableOffers = () => {
     );
   }, [fetchOffers]);
 
-  if (isLoading) {
+  if (isLoading || error) {
     return (
       <section className={classes.OffersLoading}>
-        <Loader> </Loader>
+        <Loader hasError={error}> </Loader>
       </section>
     );
   }

@@ -9,7 +9,7 @@ const isFiveChars = (value) => value.trim().length === 5;
 const Checkout = (props) => {
   const [t] = useTranslation();
   const items = useSelector((state) => state.cart.items);
-  const cartIsEmpty = items.length == 0;
+  const cartIsEmpty = items.length === 0;
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
     street: true,
@@ -77,24 +77,24 @@ const Checkout = (props) => {
     !cartIsEmpty && (
       <form className={classes.form} onSubmit={confirmHandler}>
         <div className={nameControlClasses}>
-          <label htmlFor="name">Your Name</label>
+          <label htmlFor="name">{t("checkoutForm.name")}</label>
           <input type="text" id="name" ref={nameInputRef} />
           {!formInputsValidity.name && <p>Please enter a valid name!</p>}
         </div>
         <div className={streetControlClasses}>
-          <label htmlFor="street">Street</label>
+          <label htmlFor="street">{t("checkoutForm.city")}</label>
           <input type="text" id="street" ref={streetInputRef} />
           {!formInputsValidity.street && <p>Please enter a valid street!</p>}
         </div>
         <div className={postalCodeControlClasses}>
-          <label htmlFor="postal">Postal Code</label>
+          <label htmlFor="postal">{t("checkoutForm.phone")}</label>
           <input type="text" id="postal" ref={postalCodeInputRef} />
           {!formInputsValidity.postalCode && (
             <p>Please enter a valid postal code (5 characters long)!</p>
           )}
         </div>
         <div className={cityControlClasses}>
-          <label htmlFor="city">City</label>
+          <label htmlFor="city">{t("checkoutForm.address")}</label>
           <input type="text" id="city" ref={cityInputRef} />
           {!formInputsValidity.city && <p>Please enter a valid city!</p>}
         </div>

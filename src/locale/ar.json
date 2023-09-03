@@ -18,5 +18,11 @@
     "order": "طلب",
     "close": "إغلاق",
     "confirm": "موافق"
+  },
+  "checkoutForm": {
+    "name": "الاسم",
+    "phone": "رقم الجوال",
+    "city": "المدينة",
+    "address": "العنوان"
   }
 }

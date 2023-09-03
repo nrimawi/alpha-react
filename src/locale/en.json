@@ -18,5 +18,11 @@
     "order": "Order",
     "close": "Close",
     "confirm": "Confirm"
+  },
+  "checkoutForm": {
+    "name": "Name",
+    "phone": "Phone",
+    "city": "City",
+    "address": "Address"
   }
 }

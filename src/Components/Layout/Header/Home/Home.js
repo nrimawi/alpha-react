@@ -25,6 +25,7 @@ const Home = () => {
         <p>{t("aboutUs.subTitle")}</p>
 
         <Button
+          size="large"
           fontFamily={"inherit"}
           onClick={handleScroll}
           variant="contained"
