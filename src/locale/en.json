@@ -1,5 +1,5 @@
 {
-  "title": "Alpha Service Company",
+  "title": "Alpha For Cleaning Services",
   "aboutUs": {
     "title": "Welcome to Alpha Cleaning, where cleanliness is our passion and your satisfaction is our priority.",
     "subTitle": "As a leading cleaning services company, we specialize in transforming spaces into immaculate havens. With our dedicated team and top-notch cleaning solutions, we deliver excellence, one clean at a time",
@@ -12,6 +12,11 @@
   },
   "cart": {
     "yourCart": "Orders Cart",
-    "empty": "Ordering cart is empty"
+    "empty": "Ordering cart is empty",
+    "remove": "Remove",
+    "cancel": "Cancel",
+    "order": "Order",
+    "close": "Close",
+    "confirm": "Confirm"
   }
 }

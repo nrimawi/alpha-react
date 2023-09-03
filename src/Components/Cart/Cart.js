@@ -11,14 +11,15 @@ import { useTranslation } from "react-i18next";
 
 const Cart = (props) => {
   const { isLoading, error, sendRequest: PostOrder } = useHttp();
-  const [t] = useTranslation();
+  const [t, i18n] = useTranslation();
   const dispatch = useDispatch();
   const storedCartItem = useSelector((state) => state.cart.items);
 
   const [isCheckout, setIsCheckout] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
   const hasItems = storedCartItem.length > 0;
-
+  const isArabic = i18n.language === "ar";
+  const htmlDir = isArabic ? "rtl" : "ltr";
   const cartItemRemoveHandler = (id) => {
     dispatch(cartActions.removeItemFromCart(id));
   };
@@ -47,6 +48,7 @@ const Cart = (props) => {
         <CartItem
           key={item.id}
           title={item.title}
+          title_ar={item.title_ar}
           onRemove={cartItemRemoveHandler.bind(null, item.id)}
         />
       ))}
@@ -55,14 +57,14 @@ const Cart = (props) => {
 
   const modalActions = (
     <div className={classes.actions}>
-      <button className={classes["button--alt"]} onClick={props.onClose}>
-        Close
-      </button>
       {hasItems && (
         <button className={classes.button} onClick={orderHandler}>
-          Order
+          {t("cart.order")}
         </button>
       )}
+      <button className={classes["button--alt"]} onClick={props.onClose}>
+        {t("cart.close")}
+      </button>
     </div>
   );
 
@@ -85,7 +87,7 @@ const Cart = (props) => {
       <p>Error at submitting the order : {error}</p>
       <div className={classes.actions}>
         <button className={classes.button} onClick={props.onClose}>
-          Close
+          {t("cart.close")}
         </button>
       </div>
     </React.Fragment>
@@ -95,7 +97,7 @@ const Cart = (props) => {
       <p>Successfully sent the order!</p>
       <div className={classes.actions}>
         <button className={classes.button} onClick={props.onClose}>
-          Close
+          {t("cart.close")}
         </button>
       </div>
     </React.Fragment>
@@ -103,10 +105,12 @@ const Cart = (props) => {
 
   return (
     <Modal onClose={props.onClose}>
-      {!isLoading && !didSubmit && cartModalContent}
-      {isLoading && isSubmittingModalContent}
-      {!isLoading && didSubmit && !error && didSubmitModalContent}
-      {!isLoading && didSubmit && error && hasError}
+      <html dir={htmlDir}>
+        {!isLoading && !didSubmit && cartModalContent}
+        {isLoading && isSubmittingModalContent}
+        {!isLoading && didSubmit && !error && didSubmitModalContent}
+        {!isLoading && didSubmit && error && hasError}
+      </html>
     </Modal>
   );
 };

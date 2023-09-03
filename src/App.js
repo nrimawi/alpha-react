@@ -17,7 +17,6 @@ function App() {
   // Detect the selected language
   const isArabic = i18n.language === "ar";
 
-  // Set the HTML direction attribute
   const htmlDir = isArabic ? "rtl" : "ltr";
   const showCartHandler = () => {
     setCartIsShown(true);

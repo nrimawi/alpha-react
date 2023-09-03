@@ -13,13 +13,14 @@ export default function OfferItem(props) {
   const [addedToCart, setAddedToCart] = useState(false);
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
-  const [t] = useTranslation();
+  const [t, i18n] = useTranslation();
   const addToCartHandler = () => {
     dispatch(
       cartActions.addItemToCart({
         id: props.id,
         title: props.title,
         description: props.description,
+        title_ar: props.title_ar,
       })
     );
     setAddedToCart(true);
@@ -67,7 +68,7 @@ export default function OfferItem(props) {
           variant="h5"
           component="div"
         >
-          {props.title}
+          {i18n.language === "ar" ? props.title_ar : props.title}
         </Typography>
         <Typography
           fontFamily={"inherit"}

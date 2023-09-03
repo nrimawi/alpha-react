@@ -61,10 +61,11 @@ const AvailableOffers = () => {
     <OfferItem
       key={offer.id}
       id={offer.id}
-      title={i18next.language === "ar" ? offer.title_ar : offer.title_en}
+      title={offer.title_en}
       description={
         i18next.language === "ar" ? offer.description_ar : offer.description_en
       }
+      title_ar={offer.title_ar}
       imageURL={offer.imageURL}
     />
   ));
