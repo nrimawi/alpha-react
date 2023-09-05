@@ -112,7 +112,7 @@ const Checkout = (props) => {
   const form = (
     <form className={classes.form} onSubmit={confirmHandler}>
       <TextField
-        sx={{ margin: 1, minWidth: 400 }}
+        sx={{ margin: 1, minWidth: 300 }}
         error={!formInputsValidity.firstname}
         id="outlined-controlled"
         label={t("checkoutForm.firstname")}
@@ -128,7 +128,7 @@ const Checkout = (props) => {
         value={firstnameInputValue}
       />
       <TextField
-        sx={{ margin: 1, minWidth: 400 }}
+        sx={{ margin: 1, minWidth: 300 }}
         error={!formInputsValidity.lastname}
         id="outlined-controlled"
         label={t("checkoutForm.lastname")}
@@ -145,7 +145,7 @@ const Checkout = (props) => {
       />
       {props.formMode === "2" && (
         <TextField
-          sx={{ margin: 1, minWidth: 400 }}
+          sx={{ margin: 1, minWidth: 300 }}
           error={!formInputsValidity.email}
           id="outlined-controlled"
           label={t("checkoutForm.email")}
@@ -163,7 +163,7 @@ const Checkout = (props) => {
         />
       )}
       <TextField
-        sx={{ margin: 1, minWidth: 400 }}
+        sx={{ margin: 1, minWidth: 300 }}
         error={!formInputsValidity.phone}
         id="outlined-controlled"
         label={t("checkoutForm.phone")}
@@ -178,7 +178,7 @@ const Checkout = (props) => {
       />
       {props.formMode === "1" && (
         <TextField
-          sx={{ margin: 1, minWidth: 400 }}
+          sx={{ margin: 1, minWidth: 300 }}
           error={!formInputsValidity.city}
           id="outlined-controlled"
           label={t("checkoutForm.city")}
@@ -195,7 +195,7 @@ const Checkout = (props) => {
 
       {props.formMode === "1" && (
         <TextField
-          sx={{ margin: 1, minWidth: 400 }}
+          sx={{ margin: 1, minWidth: 300 }}
           error={!formInputsValidity.address}
           id="outlined-controlled"
           label={t("checkoutForm.address")}
@@ -213,7 +213,7 @@ const Checkout = (props) => {
       )}
       {props.formMode === "2" && (
         <TextField
-          sx={{ margin: 1, minWidth: 400 }}
+          sx={{ margin: 1, minWidth: 300 }}
           id="outlined-select-currency"
           select
           label={t("checkoutForm.currency")}
@@ -230,7 +230,7 @@ const Checkout = (props) => {
       )}
       {props.formMode === "2" && (
         <TextField
-          sx={{ margin: 1, minWidth: 400 }}
+          sx={{ margin: 1, minWidth: 300 }}
           error={!formInputsValidity.amount}
           id="outlined-controlled"
           label={t("checkoutForm.amount")}
