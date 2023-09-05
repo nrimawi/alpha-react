@@ -40,7 +40,8 @@
     },
     "sendingOrder": "Request is being sent",
     "errorSendingOrder": "An error occurred sending your request, please try again",
-    "succesOrder": "Your request has been sent successfully, we will contact you as soon as possible."
+    "successOrder": "Your request has been sent successfully, we will contact you as soon as possible.",
+    "successPayment": "Your Payment is recieved.."
   },
   "payment": {
     "title": "Payment"
