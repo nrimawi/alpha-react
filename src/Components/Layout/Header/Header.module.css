@@ -14,13 +14,17 @@
   z-index: 10;
 }
 
-.cart-lang {
+.buttons-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1rem;
+  justify-content: center;
 }
-.languageButton {
+.payment-language-button {
+  display: flex; /* Use flexbox to center content */
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Horizontally center content */
   cursor: pointer;
   border: none;
   background-color: #004e96;
@@ -30,14 +34,16 @@
   font: inherit;
   font-weight: 600;
   font-size: 0.8rem;
+  gap: 5px;
+  max-height: 2.688rem;
 }
-.languageButton:hover {
+.payment-language-button:hover {
   background-color: #00245e;
 }
 @media (max-width: 768px) {
   h1 {
     font-family: inherit;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 1.3rem;
     margin-top: -0.5rem;
   }
@@ -47,7 +53,20 @@
     justify-content: center;
     gap: 0.1rem;
   }
-  .cart-lang {
+  .buttons-container {
     gap: 5px;
+    width: 100%;
+  }
+  .payment-language-button {
+    padding: 0.7rem 0.7rem;
+  }
+}
+@media (max-width: 400px) {
+  .payment-language-button {
+    font-size: 0.7rem;
+  }
+  .buttons-container {
+    gap: 5px;
+    width: 100%;
   }
 }

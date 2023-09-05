@@ -11,15 +11,14 @@ import { useTranslation } from "react-i18next";
 
 const Cart = (props) => {
   const { isLoading, error, sendRequest: PostOrder } = useHttp();
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
   const dispatch = useDispatch();
   const storedCartItem = useSelector((state) => state.cart.items);
 
   const [isCheckout, setIsCheckout] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
   const hasItems = storedCartItem.length > 0;
-  const isArabic = i18n.language === "ar";
-  const htmlDir = isArabic ? "rtl" : "ltr";
+
   const cartItemRemoveHandler = (id) => {
     dispatch(cartActions.removeItemFromCart(id));
   };
@@ -70,11 +69,15 @@ const Cart = (props) => {
 
   const cartModalContent = (
     <React.Fragment>
-      {hasItems && cartItems}
+      {hasItems && !isCheckout && cartItems}
       {!hasItems && <p className={classes.empty}>{t("cart.empty")} </p>}
 
       {isCheckout && (
-        <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
+        <Checkout
+          onConfirm={submitOrderHandler}
+          onCancel={() => setIsCheckout(false)}
+          formMode="1"
+        />
       )}
       {!isCheckout && modalActions}
     </React.Fragment>
@@ -105,12 +108,13 @@ const Cart = (props) => {
 
   return (
     <Modal onClose={props.onClose}>
-      <html dir={htmlDir}>
-        {!isLoading && !didSubmit && cartModalContent}
-        {isLoading && isSubmittingModalContent}
-        {!isLoading && didSubmit && !error && didSubmitModalContent}
-        {!isLoading && didSubmit && error && hasError}
-      </html>
+      <div className={classes["cart-title"]}>
+        <p>{t("cart.title")}</p>
+      </div>
+      {!isLoading && !didSubmit && cartModalContent}
+      {isLoading && isSubmittingModalContent}
+      {!isLoading && didSubmit && !error && didSubmitModalContent}
+      {!isLoading && didSubmit && error && hasError}
     </Modal>
   );
 };

@@ -67,6 +67,7 @@ export default function OfferItem(props) {
           gutterBottom
           variant="h5"
           component="div"
+          fontWeight="bold"
         >
           {i18n.language === "ar" ? props.title_ar : props.title}
         </Typography>

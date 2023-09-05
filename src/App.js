@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import "./App.css";
 import Cart from "./Components/Cart/Cart";
 import Header from "./Components/Layout/Header/Header.js";
@@ -6,9 +6,12 @@ import Offers from "./Components/Offers/Offers";
 import { useTranslation } from "react-i18next";
 import Home from "./Components/Layout/Header/Home/Home";
 import ComunicationLinks from "./Components/UI/CommunicationsLinks";
+import Payment from "./Components/Payment/Payment";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
+  const [paymentIsShown, setPaymentIsShown] = useState(false);
+
   const { i18n } = useTranslation();
   useEffect(() => {
     window.scrollTo({
@@ -19,7 +22,6 @@ function App() {
   // Detect the selected language
   const isArabic = i18n.language === "ar";
 
-  const htmlDir = isArabic ? "rtl" : "ltr";
   const showCartHandler = () => {
     setCartIsShown(true);
   };
@@ -27,19 +29,28 @@ function App() {
   const hideCartHandler = () => {
     setCartIsShown(false);
   };
+  const showPaymentHandler = () => {
+    setPaymentIsShown(true);
+  };
+
+  const hidePaymentHandler = () => {
+    setPaymentIsShown(false);
+  };
+
+  React.useLayoutEffect(() => {
+    document.body.setAttribute("dir", isArabic ? "rtl" : "ltr");
+  }, [isArabic]);
 
   return (
     <Fragment>
-      <html dir={htmlDir}>
-        {cartIsShown && <Cart onClose={hideCartHandler} />}
-
-        <Home />
-        <ComunicationLinks></ComunicationLinks>
-        <Header onShowCart={showCartHandler} />
-        <main>
-          <Offers />
-        </main>
-      </html>
+      {cartIsShown && <Cart onClose={hideCartHandler} />}
+      {paymentIsShown && <Payment onClose={hidePaymentHandler} />}
+      <Home />
+      <ComunicationLinks></ComunicationLinks>
+      <Header onShowCart={showCartHandler} onShowPayment={showPaymentHandler} />
+      <main>
+        <Offers />
+      </main>
     </Fragment>
   );
 }

@@ -17,12 +17,29 @@
     "cancel": "Cancel",
     "order": "Order",
     "close": "Close",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "title": "Orders Cart"
   },
   "checkoutForm": {
-    "name": "Name",
-    "phone": "Phone",
+    "firstname": "First Name",
+    "lastname": "Last Name",
+    "email": "Email",
+    "address": "Address",
     "city": "City",
-    "address": "Address"
+    "phone": "Phone",
+    "currency": "Currency",
+    "amount": "Amount",
+    "errorMessages": {
+      "firstname": "Please enter a vaild first name",
+      "lastname": "Please enter a vaild last Name",
+      "email": "Please enter a vaild email",
+      "address": "Please enter a vaild address",
+      "city": "Please enter a vaild city",
+      "phone": "Please enter a vaild phone",
+      "amount": "Please enter a vaild amount"
+    }
+  },
+  "payment": {
+    "title": "Payment"
   }
 }

@@ -5,8 +5,8 @@
   margin-top: 10px;
 }
 
-.cart-item h2 {
-  margin: 0 0 0.5rem 0;
+.cart-item h3 {
+  font-weight: 500;
 }
 
 .summary {
