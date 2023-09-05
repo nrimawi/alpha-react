@@ -15,7 +15,7 @@ const cacheRtl = createCache({
 const isEmpty = (value) =>
   value !== undefined ? value.trim().length < 2 : true;
 const isZero = (value) => value === 0;
-const isPhone = (value) => value.length == 10;
+const isPhone = (value) => value.length === 10;
 const Checkout = (props) => {
   // props.formMode =>//1-Order 2-payment
   const [t] = useTranslation();
@@ -54,7 +54,7 @@ const Checkout = (props) => {
     const enteredAddressIsValid =
       !isEmpty(addressInputValue) || props.formMode === "2";
     const enteredAmountIsValid =
-      !isZero(amountInputValue) || props.formMode === "2";
+      !isZero(amountInputValue) || props.formMode === "1";
 
     setFormInputsValidity({
       firstname: enteredFirstnameIsValid,

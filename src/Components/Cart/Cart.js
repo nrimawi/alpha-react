@@ -11,6 +11,8 @@ import { useTranslation } from "react-i18next";
 
 const Cart = (props) => {
   const { isLoading, error, sendRequest: PostOrder } = useHttp();
+  const { sendRequest: sendMessage } = useHttp();
+
   const [t] = useTranslation();
   const dispatch = useDispatch();
   const storedCartItem = useSelector((state) => state.cart.items);
@@ -27,12 +29,29 @@ const Cart = (props) => {
     setIsCheckout(true);
   };
 
-  const submitOrderHandler = async (userData) => {
+  const submitOrderHandler = async (checkoutFormData) => {
+    debugger;
+
     PostOrder(
       {
         url: "https://react-training-394f6-default-rtdb.firebaseio.com/orders.json",
         method: "POST",
-        body: JSON.stringify({ user: userData, orderedItems: storedCartItem }),
+        body: checkoutFormData,
+      },
+      null
+    );
+
+    let offers = "";
+    storedCartItem.forEach((element) => {
+      offers = offers + element.title_ar + ",";
+    });
+    offers = offers.slice(0, -1);
+    const SMS_CONTENT = `*طلب خدمات* الاسم:${checkoutFormData.firstname} ${checkoutFormData.lastname} .. جوال:${checkoutFormData.phone} .. العنوان:${checkoutFormData.city}/${checkoutFormData.address} .. الخدمات:${offers}`;
+    const SMS_To = "970599646099";
+    sendMessage(
+      {
+        url: `http://sms.htd.ps/API/SendSMS.aspx?id=90cde11b3d6eff8109084f6c6595903e&sender=RSystem&to=${SMS_To}&msg=${SMS_CONTENT}`,
+        method: "GET",
       },
       null
     );
@@ -83,11 +102,11 @@ const Cart = (props) => {
     </React.Fragment>
   );
 
-  const isSubmittingModalContent = <p>Sending order data...</p>;
+  const isSubmittingModalContent = <p>{t("checkoutForm.sendingOrder")}</p>;
 
   const hasError = (
     <React.Fragment>
-      <p>Error at submitting the order : {error}</p>
+      <p>{t("checkoutForm.errorSemding")}</p>
       <div className={classes.actions}>
         <button className={classes.button} onClick={props.onClose}>
           {t("cart.close")}
@@ -97,7 +116,7 @@ const Cart = (props) => {
   );
   const didSubmitModalContent = (
     <React.Fragment>
-      <p>Successfully sent the order!</p>
+      <p>{t("checkoutForm.successOrder")}</p>
       <div className={classes.actions}>
         <button className={classes.button} onClick={props.onClose}>
           {t("cart.close")}

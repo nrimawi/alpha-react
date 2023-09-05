@@ -37,7 +37,10 @@
       "city": "Please enter a vaild city",
       "phone": "Please enter a vaild phone",
       "amount": "Please enter a vaild amount"
-    }
+    },
+    "sendingOrder": "Request is being sent",
+    "errorSendingOrder": "An error occurred sending your request, please try again",
+    "succesOrder": "Your request has been sent successfully, we will contact you as soon as possible."
   },
   "payment": {
     "title": "Payment"

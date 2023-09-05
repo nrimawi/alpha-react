@@ -22,7 +22,7 @@ const Payment = (props) => {
     );
   };
   const sendMessageHandler = () => {
-    const SMS_CONTENT = `حركة دفع \n -الاسم: ${checkoutFormData.firstname} ${checkoutFormData.lastname}\n -المبلغ: ${checkoutFormData.amount} ${checkoutFormData.currency} -جوال: ${checkoutFormData.phone} `;
+    const SMS_CONTENT = `*حركة دفع*: -الاسم:${checkoutFormData.firstname} ${checkoutFormData.lastname} .. المبلغ :${checkoutFormData.amount} ${checkoutFormData.currency} .. جوال:${checkoutFormData.phone}`;
     const SMS_To = "970599646099";
     sendMessage(
       {
@@ -40,7 +40,7 @@ const Payment = (props) => {
       key: "pk_test_gmabUUaG5y5OAmNjgo3GGVQ44QvmeVZrW",
       email: checkoutForm.email,
       currency: checkoutForm.currency,
-      amount: checkoutForm.amount,
+      amount: checkoutForm.amount * 100,
       mobile: checkoutForm.phone,
       onSuccess: (transaction) => {
         debugger;
