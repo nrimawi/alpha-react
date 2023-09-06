@@ -87,6 +87,9 @@ const Payment = (props) => {
   );
   return (
     <Modal onClose={props.onClose}>
+      <div className={classes["cart-title"]}>
+        <p>{t("payment.title")}</p>
+      </div>
       {isCheckout && (
         <Checkout
           onConfirm={submitOrderHandler}

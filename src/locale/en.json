@@ -11,7 +11,7 @@
     "removeFromCart": "Reome From Cart"
   },
   "cart": {
-    "yourCart": "Orders Cart",
+    "yourCart": "Orders",
     "empty": "Ordering cart is empty",
     "remove": "Remove",
     "cancel": "Cancel",
@@ -29,6 +29,9 @@
     "phone": "Phone",
     "currency": "Currency",
     "amount": "Amount",
+    "ILS": "Shekel",
+    "USD": "Dollar",
+    "JOD": "Denar",
     "errorMessages": {
       "firstname": "Please enter a vaild first name",
       "lastname": "Please enter a vaild last Name",

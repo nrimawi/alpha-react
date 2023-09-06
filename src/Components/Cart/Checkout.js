@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import classes from "./Checkout.module.css";
 import { useTranslation } from "react-i18next";
-import { MenuItem, TextField } from "@mui/material";
+import { Grid, MenuItem, TextField } from "@mui/material";
 import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
@@ -42,7 +42,6 @@ const Checkout = (props) => {
 
   const confirmHandler = (event) => {
     event.preventDefault();
-    debugger;
 
     const enteredFirstnameIsValid = !isEmpty(firstnameInputValue);
     const enteredLastsnameIsValid = !isEmpty(lastnameInputValue);
@@ -96,159 +95,190 @@ const Checkout = (props) => {
   const currencies = [
     {
       value: "ILS",
-      label: "ILS",
+      label: t("checkoutForm.ILS"),
     },
     {
       value: "JOD ",
-      label: "JOD",
+      label: t("checkoutForm.JOD"),
     },
     {
       value: "USD",
-      label: "USD",
+      label: t("checkoutForm.USD"),
     },
   ];
-
   const isArabic = i18next.language === "ar";
   const form = (
     <form className={classes.form} onSubmit={confirmHandler}>
-      <TextField
-        sx={{ margin: 1, minWidth: 300 }}
-        error={!formInputsValidity.firstname}
-        id="outlined-controlled"
-        label={t("checkoutForm.firstname")}
-        helperText={
-          !formInputsValidity.firstname
-            ? t("checkoutForm.errorMessages.firstname")
-            : ""
-        }
-        onChange={(event) => {
-          setFirstnameInputValue(event.target.value);
-          formInputsValidity.firstname = true;
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          textAlign: "center",
+          justifyContent: "center",
+          marginTop: "0px",
         }}
-        value={firstnameInputValue}
-      />
-      <TextField
-        sx={{ margin: 1, minWidth: 300 }}
-        error={!formInputsValidity.lastname}
-        id="outlined-controlled"
-        label={t("checkoutForm.lastname")}
-        helperText={
-          !formInputsValidity.lastname
-            ? t("checkoutForm.errorMessages.lastname")
-            : ""
-        }
-        onChange={(event) => {
-          setLastnameInputValue(event.target.value);
-          formInputsValidity.lastname = true;
-        }}
-        value={lastnameInputValue}
-      />
-      {props.formMode === "2" && (
-        <TextField
-          sx={{ margin: 1, minWidth: 300 }}
-          error={!formInputsValidity.email}
-          id="outlined-controlled"
-          label={t("checkoutForm.email")}
-          helperText={
-            !formInputsValidity.email
-              ? t("checkoutForm.errorMessages.email")
-              : ""
-          }
-          type="email"
-          onChange={(event) => {
-            setEmailInputValue(event.target.value);
-            formInputsValidity.email = true;
-          }}
-          value={emailInputValue}
-        />
-      )}
-      <TextField
-        sx={{ margin: 1, minWidth: 300 }}
-        error={!formInputsValidity.phone}
-        id="outlined-controlled"
-        label={t("checkoutForm.phone")}
-        helperText={
-          !formInputsValidity.phone ? t("checkoutForm.errorMessages.phone") : ""
-        }
-        onChange={(event) => {
-          setPhoneInputValue(event.target.value);
-          formInputsValidity.phone = true;
-        }}
-        value={phoneInputValue}
-      />
-      {props.formMode === "1" && (
-        <TextField
-          sx={{ margin: 1, minWidth: 300 }}
-          error={!formInputsValidity.city}
-          id="outlined-controlled"
-          label={t("checkoutForm.city")}
-          helperText={
-            !formInputsValidity.city ? t("checkoutForm.errorMessages.city") : ""
-          }
-          onChange={(event) => {
-            setCityInputValue(event.target.value);
-            formInputsValidity.city = true;
-          }}
-          value={cityInputValue}
-        />
-      )}
+      >
+        <Grid xs={5} item>
+          <TextField
+            fullWidth
+            error={!formInputsValidity.firstname}
+            id="outlined-controlled"
+            label={t("checkoutForm.firstname")}
+            helperText={
+              !formInputsValidity.firstname
+                ? t("checkoutForm.errorMessages.firstname")
+                : ""
+            }
+            onChange={(event) => {
+              setFirstnameInputValue(event.target.value);
+              formInputsValidity.firstname = true;
+            }}
+            value={firstnameInputValue}
+          />
+        </Grid>
+        <Grid xs={5} item>
+          <TextField
+            fullWidth
+            error={!formInputsValidity.lastname}
+            id="outlined-controlled"
+            label={t("checkoutForm.lastname")}
+            helperText={
+              !formInputsValidity.lastname
+                ? t("checkoutForm.errorMessages.lastname")
+                : ""
+            }
+            onChange={(event) => {
+              setLastnameInputValue(event.target.value);
+              formInputsValidity.lastname = true;
+            }}
+            value={lastnameInputValue}
+          />
+        </Grid>
+        {props.formMode === "2" && (
+          <Grid xs={10} item>
+            <TextField
+              fullWidth
+              error={!formInputsValidity.email}
+              id="outlined-controlled"
+              label={t("checkoutForm.email")}
+              helperText={
+                !formInputsValidity.email
+                  ? t("checkoutForm.errorMessages.email")
+                  : ""
+              }
+              type="email"
+              onChange={(event) => {
+                setEmailInputValue(event.target.value);
+                formInputsValidity.email = true;
+              }}
+              value={emailInputValue}
+            />
+          </Grid>
+        )}
 
-      {props.formMode === "1" && (
-        <TextField
-          sx={{ margin: 1, minWidth: 300 }}
-          error={!formInputsValidity.address}
-          id="outlined-controlled"
-          label={t("checkoutForm.address")}
-          helperText={
-            !formInputsValidity.address
-              ? t("checkoutForm.errorMessages.address")
-              : ""
-          }
-          onChange={(event) => {
-            setAddressInputValue(event.target.value);
-            formInputsValidity.address = true;
-          }}
-          value={addressInputValue}
-        />
-      )}
-      {props.formMode === "2" && (
-        <TextField
-          sx={{ margin: 1, minWidth: 300 }}
-          id="outlined-select-currency"
-          select
-          label={t("checkoutForm.currency")}
-          defaultValue="ILS"
-          onChange={(event) => setCurrencyInputValue(event.target.value)}
-          value={currencyInputValue}
-        >
-          {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-      )}
-      {props.formMode === "2" && (
-        <TextField
-          sx={{ margin: 1, minWidth: 300 }}
-          error={!formInputsValidity.amount}
-          id="outlined-controlled"
-          label={t("checkoutForm.amount")}
-          helperText={
-            !formInputsValidity.amount
-              ? t("checkoutForm.errorMessages.amount")
-              : ""
-          }
-          type="number"
-          onChange={(event) => {
-            formInputsValidity.amount = true;
-            setAmountInputValue(
-              parseInt(event.target.value) > 0 ? event.target.value : ""
-            );
-          }}
-          value={amountInputValue}
-        />
-      )}
+        <Grid xs={10} item>
+          <TextField
+            fullWidth
+            error={!formInputsValidity.phone}
+            id="outlined-controlled"
+            label={t("checkoutForm.phone")}
+            helperText={
+              !formInputsValidity.phone
+                ? t("checkoutForm.errorMessages.phone")
+                : ""
+            }
+            onChange={(event) => {
+              setPhoneInputValue(event.target.value);
+              formInputsValidity.phone = true;
+            }}
+            value={phoneInputValue}
+          />
+        </Grid>
+        {props.formMode === "1" && (
+          <Grid xs={10} item>
+            <TextField
+              fullWidth
+              error={!formInputsValidity.city}
+              id="outlined-controlled"
+              label={t("checkoutForm.city")}
+              helperText={
+                !formInputsValidity.city
+                  ? t("checkoutForm.errorMessages.city")
+                  : ""
+              }
+              onChange={(event) => {
+                setCityInputValue(event.target.value);
+                formInputsValidity.city = true;
+              }}
+              value={cityInputValue}
+            />
+          </Grid>
+        )}
+
+        {props.formMode === "1" && (
+          <Grid xs={10} item>
+            <TextField
+              fullWidth
+              error={!formInputsValidity.address}
+              id="outlined-controlled"
+              label={t("checkoutForm.address")}
+              helperText={
+                !formInputsValidity.address
+                  ? t("checkoutForm.errorMessages.address")
+                  : ""
+              }
+              onChange={(event) => {
+                setAddressInputValue(event.target.value);
+                formInputsValidity.address = true;
+              }}
+              value={addressInputValue}
+            />
+          </Grid>
+        )}
+
+        {props.formMode === "2" && (
+          <Grid xs={8} item>
+            <TextField
+              fullWidth
+              error={!formInputsValidity.amount}
+              id="outlined-controlled"
+              label={t("checkoutForm.amount")}
+              helperText={
+                !formInputsValidity.amount
+                  ? t("checkoutForm.errorMessages.amount")
+                  : ""
+              }
+              type="number"
+              onChange={(event) => {
+                formInputsValidity.amount = true;
+                setAmountInputValue(
+                  parseInt(event.target.value) > 0 ? event.target.value : ""
+                );
+              }}
+              value={amountInputValue}
+            />
+          </Grid>
+        )}
+        {props.formMode === "2" && (
+          <Grid xs={2} item>
+            <TextField
+              fullWidth
+              id="outlined-select-currency"
+              select
+              label={t("checkoutForm.currency")}
+              defaultValue="ILS"
+              onChange={(event) => setCurrencyInputValue(event.target.value)}
+              value={currencyInputValue}
+            >
+              {currencies.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Grid>
+        )}
+      </Grid>
       <div className={classes.actions}>
         <button className={classes.submit}>{t("cart.confirm")}</button>
 
