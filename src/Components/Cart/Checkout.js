@@ -118,7 +118,7 @@ const Checkout = (props) => {
           marginTop: "0px",
         }}
       >
-        <Grid xs={5} item>
+        <Grid xs={6} sm={5} item>
           <TextField
             fullWidth
             error={!formInputsValidity.firstname}
@@ -136,7 +136,7 @@ const Checkout = (props) => {
             value={firstnameInputValue}
           />
         </Grid>
-        <Grid xs={5} item>
+        <Grid xs={6} sm={5} item>
           <TextField
             fullWidth
             error={!formInputsValidity.lastname}
@@ -155,7 +155,7 @@ const Checkout = (props) => {
           />
         </Grid>
         {props.formMode === "2" && (
-          <Grid xs={10} item>
+          <Grid xs={12} sm={10} item>
             <TextField
               fullWidth
               error={!formInputsValidity.email}
@@ -176,7 +176,7 @@ const Checkout = (props) => {
           </Grid>
         )}
 
-        <Grid xs={10} item>
+        <Grid xs={12} sm={10} item>
           <TextField
             fullWidth
             error={!formInputsValidity.phone}
@@ -195,7 +195,7 @@ const Checkout = (props) => {
           />
         </Grid>
         {props.formMode === "1" && (
-          <Grid xs={10} item>
+          <Grid xs={12} sm={10} item>
             <TextField
               fullWidth
               error={!formInputsValidity.city}
@@ -216,7 +216,7 @@ const Checkout = (props) => {
         )}
 
         {props.formMode === "1" && (
-          <Grid xs={10} item>
+          <Grid xs={12} sm={10} item>
             <TextField
               fullWidth
               error={!formInputsValidity.address}
@@ -237,7 +237,7 @@ const Checkout = (props) => {
         )}
 
         {props.formMode === "2" && (
-          <Grid xs={8} item>
+          <Grid xs={8} sm={6} item>
             <TextField
               fullWidth
               error={!formInputsValidity.amount}
@@ -260,7 +260,7 @@ const Checkout = (props) => {
           </Grid>
         )}
         {props.formMode === "2" && (
-          <Grid xs={2} item>
+          <Grid xs={4} item>
             <TextField
               fullWidth
               id="outlined-select-currency"
