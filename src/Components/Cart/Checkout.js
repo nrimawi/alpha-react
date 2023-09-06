@@ -55,7 +55,7 @@ const Checkout = (props) => {
     const enteredAddressIsValid =
       !isEmpty(addressInputValue) || props.formMode === "2";
     const enteredAmountIsValid =
-      (!isEmpty(amountInputValue) && regexAmount.test(amountInputValue)) ||
+      (!isEmpty(amountInputValue + "") && regexAmount.test(amountInputValue)) ||
       props.formMode === "1";
 
     setFormInputsValidity({
