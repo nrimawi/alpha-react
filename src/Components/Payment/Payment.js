@@ -29,7 +29,7 @@ const Payment = (props) => {
   };
   const sendMessageHandler = () => {
     const SMS_CONTENT = `*حركة دفع*: -الاسم:${checkoutFormData.firstname} ${checkoutFormData.lastname} .. المبلغ :${checkoutFormData.amount} ${checkoutFormData.currency} .. جوال:${checkoutFormData.phone}`;
-    const SMS_To = "970568348302";
+    const SMS_To = "970599646099";
     SendMessage(
       {
         url: `http://sms.htd.ps/API/SendSMS.aspx?id=90cde11b3d6eff8109084f6c6595903e&sender=RSystem&to=${SMS_To}&msg=${SMS_CONTENT}`,
