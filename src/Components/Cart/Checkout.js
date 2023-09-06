@@ -37,7 +37,7 @@ const Checkout = (props) => {
   const [emailInputValue, setEmailInputValue] = useState();
   const [cityInputValue, setCityInputValue] = useState();
   const [addressInputValue, setAddressInputValue] = useState();
-  const [amountInputValue, setAmountInputValue] = useState(0);
+  const [amountInputValue, setAmountInputValue] = useState();
   const [currencyInputValue, setCurrencyInputValue] = useState("ILS");
 
   const confirmHandler = (event) => {
@@ -243,7 +243,7 @@ const Checkout = (props) => {
           onChange={(event) => {
             formInputsValidity.amount = true;
             setAmountInputValue(
-              event.target.value !== "" ? event.target.value : "0"
+              parseInt(event.target.value) > 0 ? event.target.value : ""
             );
           }}
           value={amountInputValue}
