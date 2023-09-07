@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import classes from "./Checkout.module.css";
 import { useTranslation } from "react-i18next";
@@ -17,6 +18,12 @@ const regexAmount = /^[1-9]\d*$/;
 const isEmpty = (value) =>
   value !== undefined ? value.trim().length < 2 : true;
 const Checkout = (props) => {
+  const [capatchValid, setCapatchValid] = useState(false);
+  const capatchHandler = () => {
+    debugger;
+    setCapatchValid(true);
+  };
+
   // props.formMode =>//1-Order 2-payment
   const [t] = useTranslation();
 
@@ -175,7 +182,6 @@ const Checkout = (props) => {
             />
           </Grid>
         )}
-
         <Grid xs={12} sm={10} item>
           <TextField
             fullWidth
@@ -214,7 +220,6 @@ const Checkout = (props) => {
             />
           </Grid>
         )}
-
         {props.formMode === "1" && (
           <Grid xs={12} sm={10} item>
             <TextField
@@ -235,7 +240,6 @@ const Checkout = (props) => {
             />
           </Grid>
         )}
-
         {props.formMode === "2" && (
           <Grid xs={8} sm={6} item>
             <TextField
@@ -278,9 +282,21 @@ const Checkout = (props) => {
             </TextField>
           </Grid>
         )}
+        {props.formMode === "2" && (
+          <ReCAPTCHA
+            sitekey="6LcSuQcoAAAAAEgLc7CQTu59eNeL6bMqLCy7o-WR"
+            onChange={capatchHandler}
+          />
+        )}
       </Grid>
+
       <div className={classes.actions}>
-        <button className={classes.submit}>{t("cart.confirm")}</button>
+        <button
+          disabled={!capatchValid || props.formMode === "1"}
+          className={classes.submit}
+        >
+          {t("cart.confirm")}
+        </button>
 
         <button type="button" onClick={props.onCancel}>
           {t("cart.cancel")}

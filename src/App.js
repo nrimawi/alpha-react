@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import Home from "./Components/Layout/Header/Home/Home";
 import ComunicationLinks from "./Components/UI/CommunicationsLinks";
 import Payment from "./Components/Payment/Payment";
+import Footer from "./Components/Layout/Header/Footer";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -51,6 +52,7 @@ function App() {
       <main>
         <Offers />
       </main>
+      <Footer />
     </Fragment>
   );
 }
