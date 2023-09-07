@@ -23,7 +23,16 @@
   border-radius: 25px;
   margin-left: 1rem;
 }
-
+.invoicement {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.invoicement p {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 0px;
+}
 .actions button:hover,
 .actions button:active {
   background-color: #004c75;

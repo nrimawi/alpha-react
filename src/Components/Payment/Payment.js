@@ -6,14 +6,13 @@ import { useTranslation } from "react-i18next";
 import classes from "./Payment.module.css";
 const Payment = (props) => {
   let transactionReference;
-  let checkoutFormData;
   const { sendRequest: PostPayment } = useHttp();
   const { sendRequest: SendMessage } = useHttp();
   const [t] = useTranslation();
   const [error, setError] = useState(false);
   const [isSuccessPayment, setIsSuccessPayment] = useState(false);
   const [isCheckout, setIsCheckout] = useState(true);
-
+  const [checkoutFormData, SetcheckoutFormData] = useState({});
   const savePaymentHanlder = () => {
     PostPayment(
       {
@@ -39,7 +38,8 @@ const Payment = (props) => {
     );
   };
   const submitOrderHandler = (checkoutForm) => {
-    checkoutFormData = checkoutForm;
+    debugger;
+    SetcheckoutFormData(checkoutForm);
 
     try {
       const lahza = new window.LahzaPopup();
@@ -78,6 +78,37 @@ const Payment = (props) => {
   const didSubmitModalContent = (
     <React.Fragment>
       <p>{t("checkoutForm.successPayment")}</p>
+
+      <div className={classes.invoicement}>
+        <h3>Invoicement</h3>
+        <p>
+          <strong> Company:</strong> Alpha for cleaning services
+        </p>
+        <p>
+          {" "}
+          <strong>OrderId: </strong>
+          {Math.random() * 100000000000000000}
+        </p>
+        <p>
+          <strong>Name: </strong> {checkoutFormData.firstname}{" "}
+          {checkoutFormData.lastname}
+        </p>
+        <p>
+          {" "}
+          <strong>Email:</strong> {checkoutFormData.email}
+        </p>
+        <p>
+          <strong>Phone:</strong> {checkoutFormData.phone}
+        </p>
+        <p>
+          <strong>Amount:</strong> {checkoutFormData.amount}{" "}
+          {checkoutFormData.currency}{" "}
+        </p>
+        <p>
+          <strong>Paid Via: </strong> Debit/Crdit Card
+        </p>
+      </div>
+
       <div className={classes.actions}>
         <button className={classes.button} onClick={props.onClose}>
           {t("cart.close")}
