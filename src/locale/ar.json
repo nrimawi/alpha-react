@@ -54,10 +54,11 @@
     "company": "دفعت لصالح شركة: ",
     "orderId": "رقم الطلب: ",
     "companyName": "شركة ألفا للتنظيفات: ",
+    "customerName": "الاسم :",
     "email": "البريد الإلكتروني: ",
     "phone": "رقم الجوال: ",
     "amount": "المبلغ: ",
-    "paidVia": "دفعت عن طريق: ",
+    "paidVia": "طريقة الدفع: ",
     "paidViaValue": "Debit/Credit Card",
     "note": "يرجى أخذ لقطة للفاتورة والاحتفاظ بها."
   }

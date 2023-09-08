@@ -54,10 +54,11 @@
     "company": "Paid For: ",
     "orderId": "Order Id: ",
     "companyName": "Alpha For Cleaning",
+    "customerName": "Name: ",
     "email": "Email: ",
     "phone": "Phone: ",
     "amount": "Amount: ",
-    "paidVia": "Paid Via: ",
+    "paidVia": "Payment Method: ",
     "paidViaValue": "Debit/Credit Card",
     "note": "Please take a snapshot for the invoicement and keep it saved."
   }
