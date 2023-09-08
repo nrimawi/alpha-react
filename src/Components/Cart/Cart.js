@@ -49,7 +49,7 @@ const Cart = (props) => {
     const SMS_To = "970599646099";
     sendMessage(
       {
-        url: `http://sms.htd.ps/API/SendSMS.aspx?id=90cde11b3d6eff8109084f6c6595903e&sender=RSystem&to=${SMS_To}&msg=${SMS_CONTENT}`,
+        url: `https://sms.htd.ps/API/SendSMS.aspx?id=90cde11b3d6eff8109084f6c6595903e&sender=RSystem&to=${SMS_To}&msg=${SMS_CONTENT}`,
         method: "GET",
       },
       null
@@ -84,7 +84,6 @@ const Cart = (props) => {
       </button>
     </div>
   );
-
   const cartModalContent = (
     <React.Fragment>
       {hasItems && !isCheckout && cartItems}

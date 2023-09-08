@@ -83,7 +83,7 @@ const Checkout = (props) => {
       enteredAddressIsValid &&
       enteredAmountIsValid;
 
-    if (!formIsValid) {
+    if (!formIsValid || (!capatchValid && props.formMode === "2")) {
       return;
     }
 
@@ -292,7 +292,7 @@ const Checkout = (props) => {
 
       <div className={classes.actions}>
         <button
-          disabled={!capatchValid || props.formMode === "1"}
+          disabled={!capatchValid && props.formMode === "2"}
           className={classes.submit}
         >
           {t("cart.confirm")}
