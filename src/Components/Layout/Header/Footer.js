@@ -4,11 +4,9 @@ import visa from "../../../assets/visaMsterCard.png";
 import masterCard from "../../../assets/masterCard.png";
 import pdffile from "../../../assets/file.pdf";
 const Footer = () => {
-  const pdfUrl = "https://example.com/path-to-your-pdf.pdf"; // Replace with your PDF URL
-
-  const handleDownloadClick = () => {
+  const handleDownloadClick = (event) => {
     const pdfUrl = pdffile;
-
+    event.preventDefault();
     const anchor = document.createElement("a");
     anchor.href = pdfUrl;
     anchor.target = "_blank";
@@ -29,7 +27,7 @@ const Footer = () => {
       <div className={classes.privacyPolicy}>
         <h3>
           {" "}
-          <a href="#" onClick={handleDownloadClick}>
+          <a href="/" onClick={handleDownloadClick}>
             Privacy Policy{" "}
           </a>
         </h3>
