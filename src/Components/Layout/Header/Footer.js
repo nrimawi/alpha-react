@@ -3,7 +3,9 @@ import classes from "./Footer.module.css";
 import visa from "../../../assets/Visa_2021.ping.png";
 import masterCard from "../../../assets/Mastercard-logo.ping.png";
 import pdffile from "../../../assets/file.pdf";
+import { useTranslation } from "react-i18next";
 const Footer = () => {
+  const [t] = useTranslation();
   const handleDownloadClick = (event) => {
     const pdfUrl = pdffile;
     event.preventDefault();
@@ -18,12 +20,9 @@ const Footer = () => {
     <div className={classes.footer}>
       <div className={classes.policy}>
         <p>
-          We value your privacy, this website collects minimal personal
-          information solely for the purpose of providing our services. We do
-          not share or sell your data to third parties. For more details, please
-          refer to our full{" "}
+          {t("footer.text")}
           <a href="/" onClick={handleDownloadClick}>
-            Privacy and Returning Policy
+            {t("footer.hyberLink")}
           </a>
           .
         </p>

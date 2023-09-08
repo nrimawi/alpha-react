@@ -61,5 +61,9 @@
     "paidVia": "Payment Method: ",
     "paidViaValue": "Debit/Credit Card",
     "note": "Please take a snapshot for the invoicement and keep it saved."
+  },
+  "footer": {
+    "text": "We value your privacy, this website collects minimal personal information solely for the purpose of providing our services. We do not share or sell your data to third parties. For more details, please refer to our full ",
+    "hyberLink": "Privacy And Returning Policy"
   }
 }

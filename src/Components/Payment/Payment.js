@@ -36,10 +36,10 @@ const Payment = (props) => {
   };
   const sendMessageHandler = (checkoutData) => {
     const SMS_CONTENT = `*حركة دفع*: -الاسم:${checkoutData.firstname} ${checkoutData.lastname} .. المبلغ :${checkoutData.amount} ${checkoutData.currency} .. جوال:${checkoutData.phone}`;
-    const SMS_To = "970599646099";
+    const SMS_To = "970568348302";
     SendMessage(
       {
-        url: `https://sms.htd.ps/API/SendSMS.aspx?id=90cde11b3d6eff8109084f6c6595903&sender=RSystem&to=${SMS_To}&msg=${SMS_CONTENT}`,
+        url: `https://sms.htd.ps/API/SendSMS.aspx?id=90cde11b3d6eff8109084f6c6595903e&sender=RSystem&to=${SMS_To}&msg=${SMS_CONTENT}`,
         method: "GET",
       },
       null
