@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Footer.module.css";
 import visa from "../../../assets/Visa_2021.ping.png";
 import masterCard from "../../../assets/Mastercard-logo.ping.png";
-import pdffile from "../../../assets/file.pdf";
+import pdffile from "../../../assets/Policy.pdf";
 import { useTranslation } from "react-i18next";
 const Footer = () => {
   const [t] = useTranslation();
