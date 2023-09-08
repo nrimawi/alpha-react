@@ -46,7 +46,7 @@ const Cart = (props) => {
     });
     offers = offers.slice(0, -1);
     const SMS_CONTENT = `*طلب خدمات* الاسم:${checkoutFormData.firstname} ${checkoutFormData.lastname} .. جوال:${checkoutFormData.phone} .. العنوان:${checkoutFormData.city}/${checkoutFormData.address} .. الخدمات:${offers}`;
-    const SMS_To = "970568348302";
+    const SMS_To = "970595894897";
     sendMessage(
       {
         url: `https://sms.htd.ps/API/SendSMS.aspx?id=90cde11b3d6eff8109084f6c6595903e&sender=RSystem&to=${SMS_To}&msg=${SMS_CONTENT}`,
