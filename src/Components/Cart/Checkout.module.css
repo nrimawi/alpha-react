@@ -68,11 +68,15 @@
 
 .invalid input {
   border-color: #700000;
-  background-color: #ffeff1;
+  background-color: #424242;
 }
 
 .actions button[disabled] {
-  background-color: #ccc; /* Change the background color when disabled */
-  color: #666; /* Change the text color when disabled */
+  background-color: #aaaaaa; /* Change the background color when disabled */
+  color: #7c7c7c; /* Change the text color when disabled */
   cursor: not-allowed; /* Change the cursor style when disabled */
+  border: none;
+}
+.gap {
+  min-height: 20px;
 }

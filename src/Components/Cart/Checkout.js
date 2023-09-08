@@ -280,6 +280,7 @@ const Checkout = (props) => {
                 </MenuItem>
               ))}
             </TextField>
+            <div className={classes.gap}> </div>
           </Grid>
         )}
         {props.formMode === "2" && (

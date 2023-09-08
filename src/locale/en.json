@@ -48,5 +48,17 @@
   },
   "payment": {
     "title": "Payment"
+  },
+  "invoicement": {
+    "title": "Invoicement",
+    "company": "Paid For: ",
+    "orderId": "Order Id: ",
+    "companyName": "Alpha For Cleaning",
+    "email": "Email: ",
+    "phone": "Phone: ",
+    "amount": "Amount: ",
+    "paidVia": "Paid Via: ",
+    "paidViaValue": "Debit/Credit Card",
+    "note": "Please take a snapshot for the invoicement and keep it saved."
   }
 }

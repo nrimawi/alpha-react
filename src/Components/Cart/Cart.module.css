@@ -6,7 +6,7 @@
   overflow: auto;
 }
 .cart-title {
-  border-bottom: 1px solid black;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 .cart-title p {

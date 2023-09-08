@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Footer.module.css";
-import visa from "../../../assets/visaMsterCard.png";
-import masterCard from "../../../assets/masterCard.png";
+import visa from "../../../assets/Visa_2021.ping.png";
+import masterCard from "../../../assets/Mastercard-logo.ping.png";
 import pdffile from "../../../assets/file.pdf";
 const Footer = () => {
   const handleDownloadClick = (event) => {
@@ -16,32 +16,24 @@ const Footer = () => {
   };
   return (
     <div className={classes.footer}>
-      <div className={classes.returningPolicy}>
-        <h3>Returuning Policy</h3>
+      <div className={classes.policy}>
         <p>
-          This Website offers services, and the payment will be decided between
-          the company and service take on demand.{" "}
+          We value your privacy, this website collects minimal personal
+          information solely for the purpose of providing our services. We do
+          not share or sell your data to third parties. For more details, please
+          refer to our full{" "}
+          <a href="/" onClick={handleDownloadClick}>
+            Privacy and Returning Policy
+          </a>
+          .
         </p>
       </div>
-
-      <div className={classes.privacyPolicy}>
-        <h3>
-          {" "}
-          <a href="/" onClick={handleDownloadClick}>
-            Privacy Policy{" "}
-          </a>
-        </h3>
-      </div>
-      <div>
+      <div className={classes.imagesContainer}>
+        <img className={classes.visaImage} src={visa} alt="visa" />
         <img
-          className={classes.visaImage}
-          src={visa}
-          alt="A table full of delicious food!"
-        />
-        <img
-          className={classes.visaImage}
+          className={classes.masterImage}
           src={masterCard}
-          alt="A table full of delicious food!"
+          alt="masterCard"
         />
       </div>
     </div>

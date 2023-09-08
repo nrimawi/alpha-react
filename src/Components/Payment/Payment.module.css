@@ -2,11 +2,11 @@
   text-align: center;
   padding-top: 15px;
 }
-.cart-title {
-  border-bottom: 1px solid black;
+.payment-title {
+  margin-top: 10px;
   margin-bottom: 10px;
 }
-.cart-title p {
+.payment-title p {
   font-size: 2rem;
   text-align: center;
   margin: 0;
@@ -32,6 +32,10 @@
   border: 1px solid black;
   padding: 10px;
   margin: 0px;
+  font-size: 1.1rem;
+}
+.invoicement h2 {
+  text-align: center;
 }
 .actions button:hover,
 .actions button:active {
@@ -47,4 +51,8 @@
 .actions .button {
   background-color: #0077b6;
   color: white;
+}
+.note {
+  margin-top: 10px;
+  font-size: 0.9rem;
 }

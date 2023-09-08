@@ -48,5 +48,17 @@
   },
   "payment": {
     "title": "الدفع"
+  },
+  "invoicement": {
+    "title": "الفاتورة",
+    "company": "دفعت لصالح شركة: ",
+    "orderId": "رقم الطلب: ",
+    "companyName": "شركة ألفا للتنظيفات: ",
+    "email": "البريد الإلكتروني: ",
+    "phone": "رقم الجوال: ",
+    "amount": "المبلغ: ",
+    "paidVia": "دفعت عن طريق: ",
+    "paidViaValue": "Debit/Credit Card",
+    "note": "يرجى أخذ لقطة للفاتورة والاحتفاظ بها."
   }
 }

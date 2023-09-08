@@ -5,6 +5,7 @@ import Modal from "../UI/Modal";
 import { useTranslation } from "react-i18next";
 import classes from "./Payment.module.css";
 const Payment = (props) => {
+  const [paymentId, setPaymentId] = useState("");
   let transactionReference;
   const { sendRequest: PostPayment } = useHttp();
   const { sendRequest: SendMessage } = useHttp();
@@ -12,35 +13,43 @@ const Payment = (props) => {
   const [error, setError] = useState(false);
   const [isSuccessPayment, setIsSuccessPayment] = useState(false);
   const [isCheckout, setIsCheckout] = useState(true);
-  const [checkoutFormData, SetcheckoutFormData] = useState({});
-  const savePaymentHanlder = () => {
+  const [checkoutFormData, setCheckoutFormData] = useState({});
+
+  const responseDataHandler = (responseData) => {
+    debugger;
+    setPaymentId(responseData["name"].substring(1));
+    console.log();
+  };
+
+  const savePaymentHanlder = (checkoutData) => {
     PostPayment(
       {
         url: "https://react-training-394f6-default-rtdb.firebaseio.com/payments.json",
         method: "POST",
         body: JSON.stringify({
-          checkoutForm: checkoutFormData,
+          checkoutForm: checkoutData,
           transaction: transactionReference,
         }),
       },
-      null
+      responseDataHandler
     );
   };
-  const sendMessageHandler = () => {
-    const SMS_CONTENT = `*حركة دفع*: -الاسم:${checkoutFormData.firstname} ${checkoutFormData.lastname} .. المبلغ :${checkoutFormData.amount} ${checkoutFormData.currency} .. جوال:${checkoutFormData.phone}`;
-    const SMS_To = "970568348302";
+  const sendMessageHandler = (checkoutData) => {
+    const SMS_CONTENT = `*حركة دفع*: -الاسم:${checkoutData.firstname} ${checkoutData.lastname} .. المبلغ :${checkoutData.amount} ${checkoutData.currency} .. جوال:${checkoutData.phone}`;
+    const SMS_To = "970599646099";
     SendMessage(
       {
-        url: `https://sms.htd.ps/API/SendSMS.aspx?id=90cde11b3d6eff8109084f6c6595903e&sender=RSystem&to=${SMS_To}&msg=${SMS_CONTENT}`,
+        url: `https://sms.htd.ps/API/SendSMS.aspx?id=90cde11b3d6eff8109084f6c6595903&sender=RSystem&to=${SMS_To}&msg=${SMS_CONTENT}`,
         method: "GET",
       },
       null
     );
   };
-  const submitOrderHandler = (checkoutForm) => {
+  const submitPaymentHandler = (checkoutForm) => {
     debugger;
-    SetcheckoutFormData(checkoutForm);
+    setCheckoutFormData(checkoutForm);
 
+    console.log(checkoutFormData);
     try {
       const lahza = new window.LahzaPopup();
       lahza.newTransaction({
@@ -54,8 +63,8 @@ const Payment = (props) => {
         onSuccess: (transaction) => {
           debugger;
           transactionReference = transaction;
-          savePaymentHanlder();
-          sendMessageHandler();
+          savePaymentHanlder(checkoutForm);
+          sendMessageHandler(checkoutForm);
           setIsSuccessPayment(true);
           setIsCheckout(false);
         },
@@ -65,6 +74,22 @@ const Payment = (props) => {
       setError(true);
     }
   };
+
+  const checkoutForm = (
+    <React.Fragment>
+      <div>
+        <div className={classes["payment-title"]}>
+          <p>{t("payment.title")}</p>
+        </div>
+
+        <Checkout
+          onConfirm={submitPaymentHandler}
+          onCancel={props.onClose}
+          formMode="2"
+        ></Checkout>
+      </div>
+    </React.Fragment>
+  );
   const hasError = (
     <React.Fragment>
       <p>{t("checkoutForm.errorSemding")}</p>
@@ -75,40 +100,40 @@ const Payment = (props) => {
       </div>
     </React.Fragment>
   );
-  const didSubmitModalContent = (
+  const successPayment = (
     <React.Fragment>
-      <p>{t("checkoutForm.successPayment")}</p>
-
       <div className={classes.invoicement}>
-        <h3>Invoicement</h3>
+        <h2>{t("invoicement.title")}</h2>
         <p>
-          <strong> Company:</strong> Alpha for cleaning services
+          <strong> {t("invoicement.company")}</strong>
+          {t("invoicement.companyName")}
         </p>
         <p>
           {" "}
-          <strong>OrderId: </strong>
-          {Math.random() * 100000000000000000}
+          <strong> {t("invoicement.orderId")}</strong>
+          {paymentId}
         </p>
         <p>
-          <strong>Name: </strong> {checkoutFormData.firstname}{" "}
-          {checkoutFormData.lastname}
+          <strong> {t("invoicement.customerName")}</strong>{" "}
+          {checkoutFormData.firstname} {checkoutFormData.lastname}
         </p>
         <p>
           {" "}
-          <strong>Email:</strong> {checkoutFormData.email}
+          <strong>{t("invoicement.email")}</strong> {checkoutFormData.email}
         </p>
         <p>
-          <strong>Phone:</strong> {checkoutFormData.phone}
+          <strong>{t("invoicement.phone")}</strong> {checkoutFormData.phone}
         </p>
         <p>
-          <strong>Amount:</strong> {checkoutFormData.amount}{" "}
+          <strong>{t("invoicement.amount")}</strong> {checkoutFormData.amount}{" "}
           {checkoutFormData.currency}{" "}
         </p>
         <p>
-          <strong>Paid Via: </strong> Debit/Crdit Card
+          <strong>{t("invoicement.paidVia")} </strong>{" "}
+          {t("invoicement.paidViaValue")}
         </p>
       </div>
-
+      <p className={classes.note}>{t("invoicement.note")}</p>
       <div className={classes.actions}>
         <button className={classes.button} onClick={props.onClose}>
           {t("cart.close")}
@@ -118,19 +143,11 @@ const Payment = (props) => {
   );
   return (
     <Modal onClose={props.onClose}>
-      <div className={classes["cart-title"]}>
-        <p>{t("payment.title")}</p>
+      <div>
+        {isCheckout && checkoutForm}
+        {!isCheckout && isSuccessPayment && successPayment}
+        {error && hasError}
       </div>
-      {isCheckout && (
-        <Checkout
-          onConfirm={submitOrderHandler}
-          onCancel={props.onClose}
-          formMode="2"
-        ></Checkout>
-      )}
-
-      {!isCheckout && isSuccessPayment && didSubmitModalContent}
-      {error && hasError}
     </Modal>
   );
 };
