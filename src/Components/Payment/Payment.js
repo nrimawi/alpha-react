@@ -16,7 +16,6 @@ const Payment = (props) => {
   const [checkoutFormData, setCheckoutFormData] = useState({});
 
   const responseDataHandler = (responseData) => {
-    debugger;
     setPaymentId(responseData["name"].substring(1));
     console.log();
   };
@@ -46,7 +45,6 @@ const Payment = (props) => {
     );
   };
   const submitPaymentHandler = (checkoutForm) => {
-    debugger;
     setCheckoutFormData(checkoutForm);
 
     console.log(checkoutFormData);
