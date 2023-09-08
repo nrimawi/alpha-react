@@ -2,8 +2,20 @@ import React from "react";
 import classes from "./Footer.module.css";
 import visa from "../../../assets/visaMsterCard.png";
 import masterCard from "../../../assets/masterCard.png";
-
+import pdffile from "../../../assets/file.pdf";
 const Footer = () => {
+  const pdfUrl = "https://example.com/path-to-your-pdf.pdf"; // Replace with your PDF URL
+
+  const handleDownloadClick = () => {
+    const pdfUrl = pdffile;
+
+    const anchor = document.createElement("a");
+    anchor.href = pdfUrl;
+    anchor.target = "_blank";
+    anchor.download = "PrivacyPolicy.pdf";
+
+    anchor.click();
+  };
   return (
     <div className={classes.footer}>
       <div className={classes.returningPolicy}>
@@ -15,13 +27,12 @@ const Footer = () => {
       </div>
 
       <div className={classes.privacyPolicy}>
-        <h3>Privacy Policy</h3>
-        <p>
-          We value your privacy. This website collects minimal personal
-          information solely for the purpose of providing our services. We do
-          not share or sell your data to third parties. For more details, please
-          refer to our full Privacy Policy.
-        </p>
+        <h3>
+          {" "}
+          <a href="#" onClick={handleDownloadClick}>
+            Privacy Policy{" "}
+          </a>
+        </h3>
       </div>
       <div>
         <img

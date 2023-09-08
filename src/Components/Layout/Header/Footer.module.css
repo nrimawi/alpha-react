@@ -14,7 +14,15 @@
 .privacyPolicy {
   width: 20%;
 }
-p {
+
+.privacyPolicy a {
+  color: white;
+  text-decoration: none;
+}
+.privacyPolicy a:hover {
+  color: rgba(0, 174, 255, 0.993);
+}
+.footer p {
   font-size: 1rem;
 }
 .visaImage {
