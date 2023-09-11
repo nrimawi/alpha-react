@@ -13,10 +13,10 @@ const cacheRtl = createCache({
   key: "muirtl",
   stylisPlugins: [rtlPlugin],
 });
-//const regexAmount = /^[1-9]\d*$/;
+const regexAmount = /^[1-9]*$/;
 
 const isEmpty = (value) =>
-  value !== undefined ? value.trim().length < 1 : true;
+  value !== undefined ? value.trim().length < 2 : true;
 const Checkout = (props) => {
   const [capatchValid, setCapatchValid] = useState(false);
   const capatchHandler = () => {
@@ -49,7 +49,7 @@ const Checkout = (props) => {
 
   const confirmHandler = (event) => {
     event.preventDefault();
-    debugger;
+
     const enteredFirstnameIsValid = !isEmpty(firstnameInputValue);
     const enteredLastsnameIsValid = !isEmpty(lastnameInputValue);
     const enteredPhoneIsValid =
@@ -61,7 +61,7 @@ const Checkout = (props) => {
     const enteredAddressIsValid =
       !isEmpty(addressInputValue) || props.formMode === "2";
     const enteredAmountIsValid =
-      !isEmpty(amountInputValue + "") || props.formMode === "1";
+      regexAmount.test(amountInputValue) || props.formMode === "1";
 
     setFormInputsValidity({
       firstname: enteredFirstnameIsValid,
