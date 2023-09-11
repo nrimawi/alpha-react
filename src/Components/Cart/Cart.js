@@ -29,8 +29,6 @@ const Cart = (props) => {
   };
 
   const submitOrderHandler = async (checkoutFormData) => {
-    debugger;
-
     PostOrder(
       {
         url: "https://react-training-394f6-default-rtdb.firebaseio.com/orders.json",

@@ -51,7 +51,7 @@ const Payment = (props) => {
     try {
       const lahza = new window.LahzaPopup();
       lahza.newTransaction({
-        key: "pk_test_gmabUUaG5y5OAmNjgo3GGVQ44QvmeVZrW",
+        key: "pk_live_Zl7XvgouBIGUzTUVxELQNypW7uMCgWApz",
         email: checkoutForm.email,
         currency: checkoutForm.currency,
         amount: checkoutForm.amount * 100,
@@ -59,7 +59,6 @@ const Payment = (props) => {
         first_name: checkoutForm.firstName,
         last_name: checkoutForm.lastName,
         onSuccess: (transaction) => {
-          debugger;
           transactionReference = transaction;
           savePaymentHanlder(checkoutForm);
           sendMessageHandler(checkoutForm);
