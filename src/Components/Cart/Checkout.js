@@ -13,7 +13,7 @@ const cacheRtl = createCache({
   key: "muirtl",
   stylisPlugins: [rtlPlugin],
 });
-const regexAmount = /^[1-9]*$/;
+const regexAmount = /^[1-9]\d*$/;
 
 const isEmpty = (value) =>
   value !== undefined ? value.trim().length < 2 : true;
